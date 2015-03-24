@@ -14,5 +14,6 @@
 
 @interface MSInputScrollViewController : UIViewController
 @property (nonatomic, strong, readonly) UIScrollView* scrollView;
+@property (nonatomic, assign, readonly) BOOL isKeyboardShowing;
 - (void) reloadScrollContentSize;
 @end

@@ -24,6 +24,27 @@ const void* kUIViewIsScrollInputView = &kUIViewIsScrollInputView;
 }
 @end
 
+@interface UIView (First)
+@property (nonatomic, assign, readonly) BOOL isContaionsFirstResponse;
+@end
+
+@implementation UIView (First)
+
+- (BOOL) isContaionsFirstResponse
+{
+    if (self.isFirstResponder) {
+        return YES;
+    }
+    NSArray* subViews = [self.subviews copy];
+    for (UIView* v in subViews) {
+        if (v.isContaionsFirstResponse) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+@end
 
 @interface MSInputScrollViewController () <UIGestureRecognizerDelegate>
 
@@ -40,17 +61,39 @@ const void* kUIViewIsScrollInputView = &kUIViewIsScrollInputView;
     if (!self) {
         return self;
     }
-   
-
+    _isKeyboardShowing = NO;
     return self;
 }
 - (void) keybordWillShow:(NSNotification*)nc
 {
+    _isKeyboardShowing = YES;
     CGRect rect = [nc.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGRect scrollRect = self.view.bounds;
-    scrollRect.size.height = CGRectGetHeight(self.view.bounds) - rect.size.height - 40;
+    scrollRect.size.height = CGRectGetHeight(self.view.bounds) - rect.size.height;
     _scrollView.frame = scrollRect;
     [self reloadScrollContentSize];
+    [self showFirstResponse];
+    
+}
+
+- (void) showFirstResponse
+{
+    NSArray* subViews = [self.scrollView subviews];
+    for (UIView* v in subViews) {
+        if (!v.isScrollInputView) {
+            continue;
+        }
+        if (v.hidden) {
+            continue;
+        }
+        
+        BOOL first = v.isContaionsFirstResponse;
+        NSLog(@"is first %d", first);
+        if (first) {
+            [self.scrollView scrollRectToVisible:v.frame animated:YES];
+            break;
+        }
+    }
 }
 - (void) reloadScrollContentSize
 {
@@ -65,16 +108,20 @@ const void* kUIViewIsScrollInputView = &kUIViewIsScrollInputView;
         }
         maxHeight = MAX(maxHeight, CGRectGetMaxY(v.frame));
     }
-    maxHeight += 20;
+    if (_isKeyboardShowing) {
+        maxHeight += 20;
+    }
     CGSize size = CGSizeMake(CGRectGetViewControllerWidth, CGRectGetViewControllerHeight);
     size.height = MAX(maxHeight, CGRectGetHeight(_scrollView.frame));
     _scrollView.contentSize = size;
 }
 - (void) keybordWillHide:(NSNotification*)nc
 {
+    _isKeyboardShowing = NO;
     CGRect scrollRect = self.view.bounds;
     _scrollView.frame = scrollRect;
     [self reloadScrollContentSize];
+    [self.scrollView scrollRectToVisible:CGRectZero animated:YES];
 }
 
 - (void) viewDidLoad
@@ -145,7 +192,6 @@ const void* kUIViewIsScrollInputView = &kUIViewIsScrollInputView;
     [super viewDidDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-
-    
 }
 @end
+

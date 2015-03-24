@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "MSInputScrollViewController"
-  s.version          = "0.1.1"
+  s.version          = "0.1.2"
   s.summary          = "MSInputScrollViewController是一个在内部有输入框的时候自动调整内容大小的视图控制器"
   s.description      = <<-DESC
                        MSInputScrollViewController是一个在内部有输入框的时候自动调整内容大小的视图控制器。这样就不需要每个视图都自己实现监视键盘了。

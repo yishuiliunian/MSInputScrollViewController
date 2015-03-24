@@ -10,19 +10,17 @@
 Pod::Spec.new do |s|
   s.name             = "MSInputScrollViewController"
   s.version          = "0.1.0"
-  s.summary          = "A short description of MSInputScrollViewController."
+  s.summary          = "MSInputScrollViewController是一个在内部有输入框的时候自动调整内容大小的视图控制器"
   s.description      = <<-DESC
-                       An optional longer description of MSInputScrollViewController
+                       MSInputScrollViewController是一个在内部有输入框的时候自动调整内容大小的视图控制器。这样就不需要每个视图都自己实现监视键盘了。
+                        DESC
 
-                       * Markdown format.
-                       * Don't worry about the indent, we strip it!
-                       DESC
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/MSInputScrollViewController"
+  s.homepage         = "https://github.com/yishuiliunian/MSInputScrollViewController"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "stonedong" => "yishuiliunian@gmail.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/MSInputScrollViewController.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.source           = { :git => "https://github.com/yishuiliunian/MSInputScrollViewController.git", :tag => s.version.to_s }
+  s.social_media_url = 'https://dzpqzb.com'
 
   s.platform     = :ios, '7.0'
   s.requires_arc = true
@@ -33,7 +31,7 @@ Pod::Spec.new do |s|
   }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
+  s.frameworks = 'UIKit'
   s.dependency 'DZGeometryTools'
   s.dependency 'DZProgrameDefines'
 end

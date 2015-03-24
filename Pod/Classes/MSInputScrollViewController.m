@@ -60,6 +60,9 @@ const void* kUIViewIsScrollInputView = &kUIViewIsScrollInputView;
         if (!v.isScrollInputView) {
             continue;
         }
+        if (v.hidden) {
+            continue;
+        }
         maxHeight = MAX(maxHeight, CGRectGetMaxY(v.frame));
     }
     maxHeight += 20;

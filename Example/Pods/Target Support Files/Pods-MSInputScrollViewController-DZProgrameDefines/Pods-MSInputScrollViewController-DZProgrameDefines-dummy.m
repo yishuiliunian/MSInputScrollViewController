@@ -1,0 +1,5 @@
+#import <Foundation/Foundation.h>
+@interface PodsDummy_Pods_MSInputScrollViewController_DZProgrameDefines : NSObject
+@end
+@implementation PodsDummy_Pods_MSInputScrollViewController_DZProgrameDefines
+@end

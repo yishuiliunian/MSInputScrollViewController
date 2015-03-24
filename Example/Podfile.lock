@@ -1,0 +1,23 @@
+PODS:
+  - DZGeometryTools (1.0.3)
+  - DZProgrameDefines (1.0.0)
+  - FBSnapshotTestCase (1.6)
+  - MSInputScrollViewController (0.1.0):
+    - DZGeometryTools
+    - DZProgrameDefines
+
+DEPENDENCIES:
+  - FBSnapshotTestCase
+  - MSInputScrollViewController (from `../`)
+
+EXTERNAL SOURCES:
+  MSInputScrollViewController:
+    :path: ../
+
+SPEC CHECKSUMS:
+  DZGeometryTools: c13d63d3bb64e59a3795b98c14372b4c34385ab8
+  DZProgrameDefines: 8c89ec3a8d9aa5ef705438690ec6fa496eb2b6d5
+  FBSnapshotTestCase: 9d5fe43b29ae3a0ed8fc829477971b281038f748
+  MSInputScrollViewController: 907100409adc7518bb91e77d21a599f22fd992c3
+
+COCOAPODS: 0.35.0.rc2

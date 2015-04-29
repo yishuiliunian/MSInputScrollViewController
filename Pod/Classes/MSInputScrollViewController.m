@@ -127,6 +127,7 @@ const void* kUIViewIsScrollInputView = &kUIViewIsScrollInputView;
 - (void) viewDidLoad
 {
     [super viewDidLoad];
+	[self setAutomaticallyAdjustsScrollViewInsets:NO];
     self.view.backgroundColor = [UIColor whiteColor];
     _scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:_scrollView];
